@@ -28,8 +28,6 @@ public class Driver {
 
     public static WebDriver getDriver() {
         option.addArguments("--remote-allow-origins=*");
-
-
         if (driver == null) {
             if (System.getProperty("BROWSER") == null) {
                 browser = ConfigurationReader.getProperty("browser");
