@@ -18,12 +18,16 @@ import java.net.URL;
 public class Driver {
     static String browser;
 
+    static ChromeOptions option = new ChromeOptions();
+
+
     private Driver() {
     }
 
     private static WebDriver driver;
 
     public static WebDriver getDriver() {
+        option.addArguments("--remote-allow-origins=*");
         if (driver == null) {
             if (System.getProperty("BROWSER") == null) {
                 browser = ConfigurationReader.getProperty("browser");
@@ -46,7 +50,7 @@ public class Driver {
                     break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(option);
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
